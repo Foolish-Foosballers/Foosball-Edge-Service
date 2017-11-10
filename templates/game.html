@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Foolish Foosballers</title>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--<link rel="shortcut icon" type="image/png" href="favicon.png">-->
+
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+  <!-- Bootstrap -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!-- Font awesome -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" type="text/css" href="../static/css/game.css">
+
+  <!-- Custom JS -->
+  <script src="../static/js/game.js"></script>
+  <script src="../static/js/modernizr.custom.80028.js"></script>
+  <script src="../static/js/bundle.js"></script>
+  
+
+</head>
+<body>
+  <div class="container container-fluid">
+
+    <!-- Scoreboard -->
+    <div id="container--scoreboard">
+
+      <!-- Black side -->
+      <div id="container--player-scoreboard">
+        <div id="container--player-details">
+          <p>
+            <i class="fa fa-circle" aria-hidden="true" id="icon--black"></i>
+            <span id="black--name" class="name"></span>
+          </p>
+        </div>
+        <p id="black--score" class="score">0</p>
+      </div>
+
+      <!-- Menu -->
+      <div id="menu">
+        <div id="menu--timer">
+          <span id="minutes">00</span>:<span id="seconds">00</span> 
+        </div>
+        <div id="menu--options">
+          <a id="button--restart-game" class="game-option"><i class="fa fa-repeat fa-3x" aria-hidden="true"></i></a>
+          <a id="pause-play" class="game-option"><i class="fa fa-pause fa-3x" aria-hidden="true"></i></a>
+          <form id="quit--form" action="/" class="game-option">
+            <a id="button--quit-game" class="game-option"><i class="fa fa-sign-out fa-3x" aria-hidden="true"></i></a>
+          </form>
+        </div> 
+        <button id="button--edit-game" type="button" class="menu-button btn btn-primary" data-toggle="modal" data-target="#confirm--modal">Edit</button>
+        <button id="button--save-game" type="button" class="menu-button btn btn-primary" disabled>Save</button>
+      </div>
+
+      <!-- Yellow side -->
+      <div id="container--player-scoreboard">
+        <div id="container--player-details">
+          <p>
+            <i class="fa fa-circle" aria-hidden="true" id="icon--yellow"></i>
+            <span id="yellow--name" class="name"></span>
+          </p>
+        </div>
+        <p id="yellow--score" class="score">0</p>
+      </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="confirm--modal" tabindex="-1" role="dialog" aria-labelledby="title--modal" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form id="form--modal" method="post">
+            <div class="modal-header">
+              <h4 class="modal-title" id="title--modal">Edit player names and scores below.</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="modal-row">
+                <div class="modal-col">
+                    <label for="black-name--modal"><i class="fa fa-circle" aria-hidden="true" id="icon--black"></i> <span id="black-name--modal">Black</span></label>
+                    <input name="black-name--modal" type="text" class="form-control">
+                </div>                
+                <div class="modal-col">
+                    <label for="yellow-name--modal"><i class="fa fa-circle" aria-hidden="true" id="icon--yellow"></i> <span id="yellow-name--modal">Yellow</span></label>
+                    <input name="yellow-name--modal" type="text" class="form-control">
+                </div>
+              </div>
+              <div class="modal-row">
+                <div class="modal-col">
+                    <input name="black-score--modal" type="text" class="form-control">
+                </div>
+                <div class="modal-col">
+                  <input name="yellow-score--modal" type="text" class="form-control">
+                </div>                
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button id="button--edit-cancel" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button id="button--edit-confirm" type="button" class="btn btn-primary" data-dismiss="modal">Confirm Changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quit Modal -->
+  <div class="modal fade" id="quit--modal" tabindex="-1" role="dialog" aria-labelledby="title--modal" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="title--modal">Warning!</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>If you continue, your game will not be saved.</p>
+          </div>
+          <div class="modal-footer">
+            <button id="button--edit-cancel" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <form id="form--confirm-quit" action="/">
+              <button id="button--edit-confirm" type="submit" class="btn btn-danger">Quit Anyway</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="alert--game-saved" class="hidden">
+      Game Saved
+  </div>
+
+  <script>
+    updateScore({{ blackScored }}, {{ yellowScored }});
+    editNames("{{ result['black--name'] }}", "{{ result['yellow--name'] }}");
+    startTime();
+
+    $(function() {
+      // Probe for sensor data
+      var refresh_id = setInterval(function() {
+        $.get(
+          "{{ url_for('threadStatus') }}",
+          function(data) {
+            if (data.yellowScored) {
+              updateScore(0, 1);
+            }
+            else if (data.blackScored) {
+              updateScore(1, 0);
+            }
+          }
+        )}
+      , 1000);
+
+    });
+  </script>
+
+
+</body>
+</html>

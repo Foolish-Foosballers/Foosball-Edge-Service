@@ -1,0 +1,125 @@
+body {
+    margin-top: 75px;
+}
+
+#container--scoreboard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#container--player-scoreboard {
+    flex: 1;
+}
+
+#container--player-details {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+#icon--yellow {
+    color: yellow;
+}
+
+.score {
+    font-size: 150px;
+}
+
+.name {
+    font-size: 30px;
+}
+
+.modal-title {
+    display: inline;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-row {
+    display: flex;
+    margin-top: 3px;
+}
+
+.modal-col {
+    flex-grow: 1;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+#yellow-name--modal {
+    font-weight: normal;
+}
+
+#black-name--modal {
+    font-weight: normal;
+}
+
+#menu { 
+    display: flex;
+    flex-direction: column;
+}
+
+#menu--options {
+    display: flex;
+}
+
+#menu--timer {
+    font-size: 50px;
+}
+
+.menu-button {
+    margin-top: 5px;
+}
+
+.game-option {
+    flex-grow: 1;
+}
+
+#form--confirm-quit {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.game-option:hover {
+    cursor: pointer; cursor: hand;
+}
+
+#alert--game-saved {
+    position: absolute;
+    z-index: 101;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgb(64, 211, 47);
+    text-align: center;
+    line-height: 2.5;
+    overflow: hidden; 
+    -webkit-box-shadow: 0 0 5px black;
+    -moz-box-shadow:    0 0 5px black;
+    box-shadow:         0 0 5px black;
+}
+
+@-webkit-keyframes slideDown {
+    0%, 100% { -webkit-transform: translateY(-50px); }
+    10%, 90% { -webkit-transform: translateY(0px); }
+}
+@-moz-keyframes slideDown {
+    0%, 100% { -moz-transform: translateY(-50px); }
+    10%, 90% { -moz-transform: translateY(0px); }
+}
+
+.cssanimations.csstransforms .game-saved {
+    -webkit-transform: translateY(-50px);
+    -webkit-animation: slideDown 2.5s 1.0s 1 ease forwards;
+    -moz-transform:    translateY(-50px);
+    -moz-animation:    slideDown 2.5s 1.0s 1 ease forwards;
+}
+
+.hidden {
+    display: none;
+}

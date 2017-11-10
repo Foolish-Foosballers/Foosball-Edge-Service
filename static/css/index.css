@@ -1,0 +1,32 @@
+body {
+    background-color: #1479B6;
+}
+
+.container-fluid {
+    text-align: center;
+    color: white;
+    min-height: 100% !important;
+    height: 100% !important;
+}
+
+.container--center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 60px;
+}
+
+.name-col {
+    display: inline-block;
+    text-align: left;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.name-row {
+    margin-bottom: 15px;
+    margin-top: 15px;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Foolish Foosballers</title>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--<link rel="shortcut icon" type="image/png" href="favicon.png">-->
+
+  <!-- JQuery-->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+  <!-- Bootstrap -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!-- Font awesome -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+  <!-- styles -->
+  <link rel="stylesheet" type="text/css" href="../static/css/index.css">
+</head>
+<body>
+  <div class="container-fluid">
+    <h1>Welcome!</h1>
+    <p>Please enter your names.</p>
+    <div class="container--center">
+      <form action="/game" method="post">
+        <div class="name-row">
+          <div class="name-col">
+            <label for="black--name"><span style="color: black;">Black</span> Side</label>
+            <input name="black--name" type="text" class="form-control" placeholder="Name">
+          </div>
+          <div class="name-col">
+            <label for="yellow--name"><span style="color: yellow;">Yellow</span> Side</label>
+            <input name="yellow--name" type="text" class="form-control" placeholder="Name">
+          </div>
+        </div>
+        <div class="row">
+          <button type="submit" class="btn btn-default">Start Game</button>   
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
