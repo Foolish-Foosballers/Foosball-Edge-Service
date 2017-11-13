@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import time, json, jinja2
 from threading import Thread
 import os, random
-import pika
+import pika, keyring
         
 app = Flask(__name__)
 
@@ -11,8 +11,10 @@ blackScored = False
 yellowScored = False
 thread = Thread()
 
+username = "yuvzailr"
+mqPassword = keyring.get_password('cloudAMQP',username)
 queue_name = "listen_for_goal"
-url = ""
+url = "amqp://" + username + ":" + mqPassword + "@elephant.rmq.cloudamqp.com/" + username
 connection = pika.BlockingConnection(pika.URLParameters(url))
 channel = connection.channel()
 channel.queue_declare(queue=queue_name)
