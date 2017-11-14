@@ -2,9 +2,11 @@
 var amqp = require("amqplib/callback_api");
 var express = require("express");
 var app = express();
+var config = require("./config.js");
+var url = "amqp://" + config.username + ":" + config.password + "@elephant.rmq.cloudamqp.com/" + config.username
 
-app.get('/', function (req, res) {
-    amqp.connect("amqp://yuvzailr:H59aEL4rstxeP6nJm5Tzt71yeymhPOhM@elephant.rmq.cloudamqp.com/yuvzailr", function (err, conn) {
+app.get('/receive', function (req, res) {
+    amqp.connect(url, function (err, conn) {
         conn.createChannel(function (err, ch) {
           var queue_name = "listen_for_goal";
           ch.assertQueue(queue_name, { durable: false });
@@ -13,7 +15,6 @@ app.get('/', function (req, res) {
           }, { noAck: true });
         });
     });
-    
 })
 
 app.listen(3000, function () {
