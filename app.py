@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import time, json, jinja2
 from threading import Thread
+import RPi.GPIO as GPIO
 import os, random
 import pika, config
         
@@ -86,7 +87,7 @@ def threadStatus():
 
 if __name__ == "__main__":
     global connection
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="127.0.0.1", debug=True)
     print "closing connection"
     connection.close()
 
