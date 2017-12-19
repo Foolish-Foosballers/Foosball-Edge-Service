@@ -20,12 +20,12 @@ thread = Thread()
 
 username = config.credentials["username"]
 mqPassword = config.credentials["password"]
-queue_name = "listen_for_goal"
+
 url = "amqp://" + username + ":" + mqPassword + "@elephant.rmq.cloudamqp.com/" + username
 connection = pika.BlockingConnection(pika.URLParameters(url))
 channel = connection.channel()
-channel.queue_declare(queue=queue_name)
-print "setup queue: " + queue_name
+channel.exchange_declare(exchange="goalScored", exchange_type="fanout")
+
 
 def bakePie():
     while True:
@@ -38,13 +38,13 @@ def bakePie():
         if GPIO.event_detected(yellowPin):
             print "yellow goal!"
             yellowScored = True
-            channel.basic_publish(exchange='', routing_key=queue_name, body='Yellow Scored!')
-            print ("[x] Sent 'Yellow Scored!")
+            channel.basic_publish(exchange='goalScored', routing_key='', body='2')
+            print ("[x] Sent '2: Yellow Scored!")
         elif GPIO.event_detected(blackPin):
             print "black goal"
             blackScored = True
-            channel.basic_publish(exchange='', routing_key=queue_name, body='Black Scored!')
-            print ("[x] Sent 'Black Scored!")
+            channel.basic_publish(exchange='goalScored', routing_key='', body='1')
+            print ("[x] Sent '1: Black Scored!")
         time.sleep(1)
 
 # Returns a string representing the game data to be sent to JSON

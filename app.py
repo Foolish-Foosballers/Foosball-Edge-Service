@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 import time, json, jinja2
 from threading import Thread
-import RPi.GPIO as GPIO
 import os, random
 import pika, config
         
@@ -14,12 +13,12 @@ thread = Thread()
 
 username = config.credentials["username"]
 mqPassword = config.credentials["password"]
-queue_name = "listen_for_goal"
+
 url = "amqp://" + username + ":" + mqPassword + "@elephant.rmq.cloudamqp.com/" + username
 connection = pika.BlockingConnection(pika.URLParameters(url))
 channel = connection.channel()
-channel.queue_declare(queue=queue_name)
-print "setup queue: " + queue_name
+# channel.queue_declare(queue=queue_name)
+channel.exchange_declare(exchange="goalScored", exchange_type="fanout")
 
 def bakePie():
     while True:
@@ -32,12 +31,14 @@ def bakePie():
         result = random.random()  
         if result < 0.5:
             blackScored = True
-            channel.basic_publish(exchange='', routing_key=queue_name, body='Black Scored!')
+            # channel.basic_publish(exchange='', routing_key=queue_name, body='Black Scored!')
+            channel.basic_publish(exchange='goalScored', routing_key='', body='Black Scored!')
             print ("[x] Sent 'Black Scored!")
             time.sleep(1)
         else:
             yellowScored = True
-            channel.basic_publish(exchange='', routing_key=queue_name, body='Yellow Scored!')
+            # channel.basic_publish(exchange='', routing_key=queue_name, body='Yellow Scored!')
+            channel.basic_publish(exchange='goalScored', routing_key='', body='Yellow Scored!')
             print ("[x] Sent 'Yellow Scored!")
             time.sleep(1)
 
